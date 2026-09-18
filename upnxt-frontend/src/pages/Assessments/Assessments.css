@@ -1,0 +1,489 @@
+.assessment-page {
+  min-height: 100vh;
+  padding: 38px 42px 60px;
+  box-sizing: border-box;
+  background: #f7f4ef;
+  color: #382419;
+}
+
+.assessment-intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 27px 30px;
+  border: 1px solid #e5d6c8;
+  border-radius: 22px;
+  background:
+    radial-gradient(
+      circle at 90% 20%,
+      rgba(132, 91, 60, 0.1),
+      transparent 30%
+    ),
+    #fffaf5;
+}
+
+.assessment-intro p {
+  margin: 0 0 7px;
+  color: #a16f48;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 2px;
+}
+
+.assessment-intro h1 {
+  margin: 0;
+  font-size: 35px;
+}
+
+.assessment-intro span {
+  display: block;
+  margin-top: 8px;
+  color: #907d70;
+  font-size: 13px;
+}
+
+.assessment-intro-icon {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  color: #80502f;
+  background: #f1e3d7;
+}
+
+.assessment-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.assessment-card {
+  padding: 23px;
+  border: 1px solid #e6d9cc;
+  border-radius: 19px;
+  background: #fffaf5;
+  box-shadow: 0 8px 25px rgba(65, 39, 22, 0.05);
+}
+
+.assessment-card-icon {
+  width: 51px;
+  height: 51px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  color: #7d4d2e;
+  background: #f1e2d4;
+}
+
+.assessment-card h2 {
+  margin: 18px 0 6px;
+  font-size: 17px;
+}
+
+.assessment-card p {
+  min-height: 42px;
+  margin: 0;
+  color: #927e72;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.assessment-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 22px;
+}
+
+.assessment-card-footer span {
+  color: #9b8779;
+  font-size: 10px;
+}
+
+.assessment-card-footer button,
+.next-question,
+.result-actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 13px;
+  border: 0;
+  border-radius: 10px;
+  color: white;
+  background: #684027;
+  font-size: 10px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.assessment-back {
+  border: 0;
+  background: transparent;
+  color: #80502f;
+  font-size: 11px;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.assessment-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.assessment-header span {
+  color: #a06e47;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.assessment-header h1 {
+  margin: 5px 0 0;
+  font-size: 27px;
+}
+
+.assessment-progress {
+  width: 260px;
+  height: 7px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #eaded4;
+}
+
+.assessment-progress div {
+  height: 100%;
+  border-radius: inherit;
+  background: #75482c;
+  transition: width 0.3s ease;
+}
+
+.question-card {
+  max-width: 850px;
+  margin: 25px auto;
+  padding: 31px;
+  border: 1px solid #e4d7ca;
+  border-radius: 23px;
+  background: #fffaf5;
+  box-shadow: 0 12px 35px rgba(65, 39, 22, 0.07);
+}
+
+.question-card > p {
+  margin: 0;
+  color: #a06f4a;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: 1.6px;
+}
+
+.question-card h2 {
+  margin: 10px 0 23px;
+  font-size: 22px;
+  line-height: 1.45;
+}
+
+.assessment-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 11px;
+}
+
+.assessment-options button {
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 13px;
+  border: 1px solid #e4d8cd;
+  border-radius: 12px;
+  color: #5b4435;
+  background: #fff;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.assessment-options button:hover {
+  border-color: #b9987e;
+}
+
+.assessment-options button.selected {
+  border-color: #80502f;
+  color: #684027;
+  background: #f5ebe2;
+}
+
+.assessment-options button span {
+  width: 29px;
+  height: 29px;
+  flex: 0 0 29px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: #80502f;
+  background: #f1e4d9;
+  font-size: 9px;
+}
+
+.assessment-options button svg {
+  margin-left: auto;
+  color: #5e9468;
+}
+
+.next-question {
+  width: 100%;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.next-question:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.assessment-result {
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.assessment-result-icon {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+  color: #80502f;
+  background: #f1e2d4;
+}
+
+.assessment-result > p {
+  margin: 20px 0 5px;
+  color: #a06e47;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 2px;
+}
+
+.assessment-result h1 {
+  margin: 0;
+  font-size: 34px;
+}
+
+.assessment-score {
+  margin-top: 18px;
+  color: #694027;
+  font-size: 65px;
+  font-weight: 900;
+}
+
+.assessment-result h3 {
+  margin: 0;
+}
+
+.assessment-result > span {
+  margin-top: 6px;
+  color: #958174;
+  font-size: 11px;
+}
+
+.result-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+@media (max-width: 900px) {
+  .assessment-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .assessment-page {
+    padding: 25px 18px;
+  }
+
+  .assessment-options {
+    grid-template-columns: 1fr;
+  }
+
+  .assessment-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .assessment-progress {
+    width: 100%;
+  }
+}
+/* =========================================================
+   ASSESSMENTS — FINAL TYPOGRAPHY OVERRIDE
+   KEEP EXISTING LAYOUT UNCHANGED
+========================================================= */
+
+/* Back button */
+.assessment-back {
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  color: #70452b !important;
+}
+
+/* Assessment title/category */
+.assessment-header span {
+  font-size: 13px !important;
+  font-weight: 850 !important;
+  color: #855432 !important;
+}
+
+/* Question 1 of 3 */
+.assessment-header h1 {
+  font-size: 32px !important;
+  line-height: 1.25 !important;
+  color: #382419 !important;
+}
+
+/* Progress bar */
+.assessment-progress {
+  height: 9px !important;
+}
+
+/* Question card label */
+.question-card > p {
+  font-size: 12px !important;
+  letter-spacing: 1.8px !important;
+  font-weight: 850 !important;
+  color: #9a6845 !important;
+}
+
+/* Main question */
+.question-card h2 {
+  font-size: 27px !important;
+  line-height: 1.4 !important;
+  color: #382419 !important;
+}
+
+/* Answer options */
+.assessment-options button {
+  min-height: 62px !important;
+  padding: 13px 16px !important;
+  font-size: 15px !important;
+  font-weight: 750 !important;
+  color: #543522 !important;
+}
+
+/* A B C D boxes */
+.assessment-options button span {
+  width: 34px !important;
+  height: 34px !important;
+  flex: 0 0 34px !important;
+  font-size: 12px !important;
+  font-weight: 850 !important;
+  color: #75482d !important;
+}
+
+/* Selected answer */
+.assessment-options button.selected {
+  color: #5a3823 !important;
+  border-color: #7b4a2c !important;
+  background: #f2e2d3 !important;
+}
+
+/* Next question */
+.next-question {
+  min-height: 54px !important;
+  font-size: 14px !important;
+  font-weight: 850 !important;
+}
+
+/* =========================================================
+   ASSESSMENT LIST PAGE
+========================================================= */
+
+.assessment-intro p {
+  font-size: 12px !important;
+}
+
+.assessment-intro h1 {
+  font-size: 38px !important;
+  color: #382419 !important;
+}
+
+.assessment-intro span {
+  font-size: 14px !important;
+}
+
+.assessment-card h2 {
+  font-size: 20px !important;
+}
+
+.assessment-card p {
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+}
+
+.assessment-card-footer span {
+  font-size: 12px !important;
+}
+
+.assessment-card-footer button {
+  font-size: 12px !important;
+}
+
+/* =========================================================
+   RESULT SCREEN
+========================================================= */
+
+.assessment-result > p {
+  font-size: 12px !important;
+  letter-spacing: 2px !important;
+}
+
+.assessment-result h1 {
+  font-size: 40px !important;
+}
+
+.assessment-score {
+  font-size: 72px !important;
+}
+
+.assessment-result h3 {
+  font-size: 18px !important;
+}
+
+.assessment-result > span {
+  font-size: 13px !important;
+}
+
+.result-actions button {
+  font-size: 12px !important;
+}
+
+/* =========================================================
+   ESPRESSO COLORS
+========================================================= */
+
+.assessment-page {
+  color: #382419 !important;
+}
+
+.assessment-back:hover {
+  color: #4f2d1c !important;
+}
+
+.assessment-card,
+.question-card {
+  color: #382419;
+}

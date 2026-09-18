@@ -1,0 +1,262 @@
+.insights-page {
+  min-height: 100vh;
+  padding: 38px 42px 60px;
+  box-sizing: border-box;
+  background: #f7f4ef;
+  color: #392519;
+}
+
+.insights-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 31px;
+  border: 1px solid #e5d7ca;
+  border-radius: 22px;
+  background:
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(133, 91, 59, 0.1),
+      transparent 30%
+    ),
+    #fffaf5;
+}
+
+.insights-hero p {
+  margin: 0 0 7px;
+  color: #a06d47;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 2px;
+}
+
+.insights-hero h1 {
+  margin: 0;
+  font-size: 35px;
+}
+
+.insights-hero span {
+  display: block;
+  max-width: 600px;
+  margin-top: 8px;
+  color: #907d70;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.insights-hero-icon {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  color: #7d4d2e;
+  background: #f0e2d5;
+}
+
+.insights-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 0.6fr;
+  gap: 19px;
+  margin-top: 20px;
+}
+
+.insight-main-card,
+.insight-side-card,
+.insight-tips {
+  padding: 24px;
+  border: 1px solid #e5d8cb;
+  border-radius: 20px;
+  background: #fffaf5;
+  box-shadow: 0 8px 26px rgba(65, 39, 22, 0.05);
+}
+
+.insight-card-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.insight-card-heading p,
+.insight-side-card > p,
+.insight-tips-header p {
+  margin: 0 0 5px;
+  color: #a06e48;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: 1.5px;
+}
+
+.insight-card-heading h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.insight-score {
+  color: #71462b;
+  font-size: 31px;
+  font-weight: 850;
+}
+
+.insight-progress {
+  height: 9px;
+  overflow: hidden;
+  margin-top: 18px;
+  border-radius: 20px;
+  background: #eee3da;
+}
+
+.insight-progress div {
+  height: 100%;
+  border-radius: inherit;
+  background: #70442a;
+}
+
+.insight-checklist {
+  margin-top: 18px;
+}
+
+.insight-checklist > div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 0;
+  border-bottom: 1px solid #eee5dd;
+}
+
+.insight-checklist svg {
+  color: #c1afa2;
+}
+
+.insight-checklist svg.completed {
+  color: #6a976e;
+}
+
+.insight-checklist span {
+  flex: 1;
+  color: #60493a;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.insight-checklist strong {
+  color: #998579;
+  font-size: 9px;
+}
+
+.insight-main-card > button,
+.insight-side-card button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 18px;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 10px;
+  color: white;
+  background: #694027;
+  font-size: 10px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.insight-side-card {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.insight-side-icon {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  color: #80502f;
+  background: #f1e3d6;
+}
+
+.insight-side-card > p {
+  margin-top: 19px;
+}
+
+.insight-side-card h2 {
+  margin: 0;
+  font-size: 19px;
+}
+
+.insight-side-card > span {
+  margin-top: 8px;
+  color: #917e71;
+  font-size: 10px;
+  line-height: 1.65;
+}
+
+.insight-tips {
+  margin-top: 20px;
+}
+
+.insight-tips-header {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.tips-icon {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  color: #80502f;
+  background: #f1e3d6;
+}
+
+.insight-tips-header h2 {
+  margin: 0;
+  font-size: 17px;
+}
+
+.tips-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(3, 1fr);
+  gap: 13px;
+  margin-top: 18px;
+}
+
+.tip-card {
+  padding: 17px;
+  border-radius: 14px;
+  background: #f7eee6;
+}
+
+.tip-card > svg {
+  color: #80502f;
+}
+
+.tip-card h3 {
+  margin: 10px 0 5px;
+  font-size: 12px;
+}
+
+.tip-card p {
+  margin: 0;
+  color: #917d70;
+  font-size: 9px;
+  line-height: 1.6;
+}
+
+@media (max-width: 850px) {
+  .insights-page {
+    padding: 25px 18px;
+  }
+
+  .insights-grid,
+  .tips-grid {
+    grid-template-columns: 1fr;
+  }
+}

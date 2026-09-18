@@ -1,0 +1,393 @@
+.profile-overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(15, 11, 9, 0.45);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: opacity 0.3s ease,
+              visibility 0.3s ease;
+
+  z-index: 998;
+}
+
+.profile-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* ===============================
+   PROFILE DRAWER
+================================ */
+
+.profile-panel {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: min(360px, 88vw);
+  height: 100vh;
+
+  background:
+    linear-gradient(
+      180deg,
+      #d8bea1 0%,
+      #c9aa87 100%
+    );
+
+  color: #2b1b14;
+
+  z-index: 999;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 24px 18px 20px;
+
+  box-shadow:
+    18px 0 60px rgba(0, 0, 0, 0.28);
+
+  transform: translateX(-105%);
+
+  transition: transform 0.38s
+    cubic-bezier(0.22, 1, 0.36, 1);
+
+  overflow-y: auto;
+}
+
+.profile-panel.open {
+  transform: translateX(0);
+}
+
+
+/* ===============================
+   HEADER
+================================ */
+
+.profile-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 4px 4px 24px;
+}
+
+.panel-brand {
+  font-family: "Playfair Display", serif;
+
+  font-size: 30px;
+  font-weight: 500;
+
+  color: #382319;
+}
+
+.panel-brand span {
+  color: #7a5035;
+}
+
+.panel-close {
+  width: 38px;
+  height: 38px;
+
+  border-radius: 11px;
+
+  border: 1px solid rgba(69, 42, 29, 0.18);
+
+  background: rgba(255, 255, 255, 0.2);
+
+  color: #3b251a;
+
+  display: grid;
+  place-items: center;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.panel-close:hover {
+  background: rgba(255, 255, 255, 0.42);
+
+  transform: rotate(90deg);
+}
+
+
+/* ===============================
+   USER
+================================ */
+
+.panel-user {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 14px 8px 20px;
+}
+
+.panel-avatar {
+  width: 58px;
+  height: 58px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #5b3826,
+      #2d1b14
+    );
+
+  color: #ead8c2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
+  border: 3px solid
+    rgba(255, 255, 255, 0.35);
+
+  box-shadow:
+    0 8px 20px
+    rgba(59, 35, 24, 0.2);
+}
+
+.panel-user-info {
+  min-width: 0;
+}
+
+.panel-user-info h3 {
+  margin: 0 0 5px;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  color: #2e1b13;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.panel-user-info p {
+  margin: 0;
+
+  font-size: 12px;
+
+  color: rgba(55, 33, 23, 0.65);
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* ===============================
+   DIVIDER
+================================ */
+
+.panel-divider {
+  height: 1px;
+
+  background:
+    rgba(61, 37, 25, 0.14);
+
+  margin: 4px 6px 12px;
+}
+
+
+/* ===============================
+   MENU
+================================ */
+
+.panel-navigation {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.panel-menu-item {
+  width: 100%;
+
+  border: none;
+  background: transparent;
+
+  padding: 13px 12px;
+
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: #41291d;
+
+  font-family: inherit;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.22s ease,
+    transform 0.22s ease;
+}
+
+.panel-menu-item:hover {
+  background:
+    rgba(255, 255, 255, 0.34);
+
+  transform: translateX(3px);
+}
+
+.panel-menu-left {
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+}
+
+.panel-menu-icon {
+  width: 34px;
+  height: 34px;
+
+  border-radius: 10px;
+
+  display: grid;
+  place-items: center;
+
+  background:
+    rgba(99, 63, 42, 0.09);
+
+  color: #5b3826;
+}
+
+
+/* ===============================
+   BOTTOM SECTION
+================================ */
+
+.panel-bottom {
+  margin-top: auto;
+
+  padding-top: 16px;
+}
+
+.panel-logout {
+  width: 100%;
+
+  margin-top: 14px;
+
+  padding: 13px 14px;
+
+  border-radius: 12px;
+
+  border:
+    1px solid rgba(91, 56, 38, 0.18);
+
+  background:
+    rgba(91, 56, 38, 0.08);
+
+  color: #5a3423;
+
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  font-family: inherit;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.panel-logout:hover {
+  background: #4a2c1e;
+
+  color: #f2dfc9;
+}
+
+
+/* ===============================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+  .profile-panel {
+    width: min(330px, 90vw);
+  }
+}
+/* ================= OVERLAY ================= */
+
+.profile-overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(25, 16, 12, 0.45);
+
+  opacity: 0;
+  visibility: hidden;
+
+  pointer-events: none;
+
+  transition: opacity 0.3s ease;
+
+  z-index: 9998;
+}
+
+.profile-overlay.show {
+  opacity: 1;
+  visibility: visible;
+
+  pointer-events: auto;
+}
+
+
+/* ================= SIDE PANEL ================= */
+
+.profile-panel {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 380px;
+  max-width: 88vw;
+
+  height: 100vh;
+
+  background: #d9b58d;
+
+  color: #3b2118;
+
+  z-index: 9999;
+
+  transform: translateX(-100%);
+
+  transition: transform 0.35s ease;
+
+  overflow-y: auto;
+
+  box-shadow: 20px 0 60px rgba(0, 0, 0, 0.28);
+}
+
+.profile-panel.open {
+  transform: translateX(0);
+}

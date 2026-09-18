@@ -1,0 +1,400 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.home-page {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 72% 52%,
+      rgba(92, 62, 46, 0.22),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 18% 30%,
+      rgba(78, 53, 40, 0.18),
+      transparent 30%
+    ),
+    #1c1716;
+
+  color: #e5c6a3;
+  font-family: "DM Sans", sans-serif;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ================= BACKGROUND GLOWS ================= */
+
+.home-bg-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(100px);
+}
+
+.home-glow-one {
+  width: 380px;
+  height: 380px;
+
+  top: -180px;
+  left: -120px;
+
+  background: rgba(122, 83, 57, 0.12);
+}
+
+.home-glow-two {
+  width: 300px;
+  height: 300px;
+
+  right: 8%;
+  bottom: -180px;
+
+  background: rgba(120, 78, 51, 0.1);
+}
+
+/* ================= MAIN WRAPPER ================= */
+
+.home-wrapper {
+  width: min(1050px, 90%);
+  min-height: 100vh;
+
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ================= CENTER CONTENT ================= */
+
+.home-center {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  transform: translateX(-40px);
+}
+
+/* ================= ICON ================= */
+
+.home-logo-icon {
+  width: 52px;
+  height: 52px;
+
+  border: 1px solid rgba(229, 198, 163, 0.5);
+  border-radius: 13px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #e5c6a3;
+
+  margin-bottom: 18px;
+
+  background: rgba(255, 255, 255, 0.015);
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* ================= UPNXT ================= */
+
+.home-logo {
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(58px, 7vw, 88px);
+  font-weight: 500;
+
+  letter-spacing: -4px;
+  line-height: 1;
+
+  color: #e8c9a5;
+
+  margin-bottom: 20px;
+
+  text-shadow:
+    0 10px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* ================= SMALL LINE ================= */
+
+.home-line {
+  width: 48px;
+  height: 1px;
+
+  margin-bottom: 18px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #c89c72,
+    transparent
+  );
+}
+
+/* ================= TAGLINE ================= */
+
+.home-tagline {
+  font-size: 10px;
+
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+
+  color: rgba(229, 198, 163, 0.68);
+
+  margin-bottom: 22px;
+}
+
+/* ================= BUTTON ================= */
+
+.explore-button {
+  border: 1px solid rgba(229, 198, 163, 0.3);
+
+  background: rgba(255, 255, 255, 0.015);
+
+  color: #e5c6a3;
+
+  padding: 13px 20px;
+
+  border-radius: 9px;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.explore-button:hover {
+  transform: translateY(-3px);
+
+  background: rgba(229, 198, 163, 0.08);
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.22);
+}
+
+/* ================= BAG SECTION ================= */
+
+.bag-section {
+  position: absolute;
+
+  width: 330px;
+  height: 330px;
+
+  right: 11%;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ORBITS */
+
+.orbit {
+  position: absolute;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(229, 198, 163, 0.1);
+
+  pointer-events: none;
+}
+
+.orbit-one {
+  width: 240px;
+  height: 190px;
+
+  transform: rotate(-25deg);
+}
+
+.orbit-two {
+  width: 300px;
+  height: 240px;
+
+  transform: rotate(20deg);
+
+  opacity: 0.45;
+}
+
+/* ================= BAG GLOW ================= */
+
+.bag-glow {
+  position: absolute;
+
+  width: 170px;
+  height: 40px;
+
+  bottom: 60px;
+
+  border-radius: 50%;
+
+  background: rgba(193, 125, 72, 0.35);
+
+  filter: blur(22px);
+
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+/* ================= BAG ANIMATION ================= */
+
+.bag-animation {
+  position: relative;
+  z-index: 3;
+
+  animation: floatingBag 4.5s ease-in-out infinite;
+}
+
+.briefcase {
+  width: 155px;
+  height: 155px;
+
+  color: #9c7359;
+
+  filter:
+    drop-shadow(0 25px 25px rgba(0, 0, 0, 0.5))
+    drop-shadow(0 5px 8px rgba(180, 118, 74, 0.12));
+}
+
+/* ================= SPARKS ================= */
+
+.spark {
+  position: absolute;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: #d9a66f;
+
+  box-shadow:
+    0 0 10px rgba(217, 166, 111, 0.8);
+
+  animation: sparkle 3s ease-in-out infinite;
+}
+
+.spark-one {
+  top: 80px;
+  left: 55px;
+}
+
+.spark-two {
+  right: 25px;
+  bottom: 95px;
+
+  animation-delay: 1.5s;
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes floatingBag {
+  0% {
+    transform:
+      translateY(0)
+      rotate(-8deg);
+  }
+
+  50% {
+    transform:
+      translateY(-18px)
+      rotate(5deg);
+  }
+
+  100% {
+    transform:
+      translateY(0)
+      rotate(-8deg);
+  }
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    transform: scale(0.85);
+    opacity: 0.45;
+  }
+
+  50% {
+    transform: scale(1.15);
+    opacity: 0.8;
+  }
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    transform: scale(0.5);
+    opacity: 0.25;
+  }
+
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+  .home-center {
+    transform: translateX(-60px);
+  }
+
+  .bag-section {
+    right: -40px;
+
+    transform:
+      translateY(-50%)
+      scale(0.85);
+  }
+}
+
+@media (max-width: 700px) {
+  .home-wrapper {
+    width: 100%;
+  }
+
+  .home-center {
+    transform: translateY(-100px);
+  }
+
+  .bag-section {
+    top: auto;
+    bottom: -40px;
+    right: 50%;
+
+    transform:
+      translateX(50%)
+      scale(0.7);
+  }
+
+  .home-logo {
+    font-size: 68px;
+  }
+}

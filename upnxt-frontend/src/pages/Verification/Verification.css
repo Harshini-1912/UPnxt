@@ -1,0 +1,416 @@
+/* ========================================
+   VERIFICATION PAGE
+======================================== */
+
+.verification-page {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px 20px;
+
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(185, 137, 94, 0.08),
+      transparent 35%
+    ),
+    #21130f;
+
+  color: #f4e9df;
+
+  box-sizing: border-box;
+}
+
+
+/* ========================================
+   VERIFICATION CARD
+======================================== */
+
+.verification-card {
+  width: min(560px, 100%);
+
+  padding: 70px 70px 58px;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(48, 31, 25, 0.98),
+      rgba(31, 21, 18, 0.98)
+    );
+
+  border: 1px solid rgba(215, 177, 143, 0.12);
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.3);
+
+  box-sizing: border-box;
+}
+
+
+/* ========================================
+   ICON
+======================================== */
+
+.verification-icon {
+  width: 68px;
+  height: 68px;
+
+  margin: 0 auto 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 17px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #30231d,
+      #261914
+    );
+
+  border: 1px solid rgba(201, 155, 116, 0.15);
+
+  color: #d1a074;
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+
+/* ========================================
+   EYEBROW
+======================================== */
+
+.verification-eyebrow {
+  margin: 0 0 24px;
+
+  color: #c6976e;
+
+  font-size: 0.72rem;
+
+  font-weight: 800;
+
+  letter-spacing: 0.18em;
+}
+
+
+/* ========================================
+   HEADING
+======================================== */
+
+.verification-card h1 {
+  margin: 0;
+
+  color: #f5ebe2;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: clamp(2.7rem, 5vw, 4rem);
+
+  line-height: 1.05;
+
+  letter-spacing: -0.045em;
+}
+
+
+/* ========================================
+   SUBTITLE
+======================================== */
+
+.verification-subtitle {
+  margin: 18px auto 36px;
+
+  color: #a99a90;
+
+  font-size: 0.95rem;
+
+  line-height: 1.6;
+}
+
+
+/* ========================================
+   OTP INPUT
+======================================== */
+
+.otp-wrapper {
+  position: relative;
+
+  width: 100%;
+  height: 72px;
+
+  margin: 0 auto;
+
+  border: 1px solid rgba(201, 155, 116, 0.45);
+
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.025);
+
+  overflow: hidden;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.otp-wrapper:focus-within {
+  border-color: #c99b74;
+
+  box-shadow:
+    0 0 0 4px rgba(201, 155, 116, 0.08);
+}
+
+.otp-wrapper.otp-error {
+  border-color: #c56d60;
+}
+
+.otp-wrapper input {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: transparent;
+
+  caret-color: #d4a47a;
+
+  font-size: 0;
+
+  text-align: center;
+
+  z-index: 2;
+
+  cursor: text;
+}
+
+
+/* ========================================
+   OTP DOTS
+======================================== */
+
+.otp-dots {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 16px;
+
+  pointer-events: none;
+}
+
+.otp-dot {
+  width: 9px;
+  height: 9px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #756b65;
+
+  color: #f3e5d8;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  transition:
+    0.2s ease;
+}
+
+.otp-dot.filled {
+  width: 28px;
+  height: 28px;
+
+  border-radius: 8px;
+
+  background: #c99b74;
+
+  color: #2b1a13;
+}
+
+
+/* ========================================
+   ERROR
+======================================== */
+
+.verification-error {
+  margin: 10px 0 0;
+
+  color: #d8786b;
+
+  font-size: 0.78rem;
+}
+
+
+/* ========================================
+   EMAIL
+======================================== */
+
+.verification-email {
+  margin: 22px 0 30px;
+
+  color: #b89473;
+
+  font-size: 0.78rem;
+
+  line-height: 1.5;
+}
+
+.verification-email strong {
+  color: #cda078;
+
+  font-weight: 600;
+}
+
+
+/* ========================================
+   VERIFY BUTTON
+======================================== */
+
+.verify-button {
+  width: 100%;
+
+  min-height: 62px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 11px;
+
+  border: none;
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #cda276,
+      #bd8d64
+    );
+
+  color: #2a1810;
+
+  font-size: 0.92rem;
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.verify-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 30px rgba(201, 155, 116, 0.18);
+}
+
+.verify-button:disabled {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+}
+
+
+/* ========================================
+   CHANGE DETAILS
+======================================== */
+
+.change-details-button {
+  margin-top: 25px;
+
+  border: none;
+
+  background: transparent;
+
+  color: #9f8b7d;
+
+  font-size: 0.82rem;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease;
+}
+
+.change-details-button:hover {
+  color: #d1a074;
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 650px) {
+
+  .verification-card {
+    padding: 52px 28px 42px;
+
+    border-radius: 20px;
+  }
+
+  .verification-card h1 {
+    font-size: 2.6rem;
+  }
+
+  .verification-icon {
+    margin-bottom: 27px;
+  }
+
+  .otp-dots {
+    gap: 12px;
+  }
+}
+
+
+@media (max-width: 400px) {
+
+  .verification-card {
+    padding: 45px 20px 36px;
+  }
+
+  .otp-dots {
+    gap: 9px;
+  }
+
+  .otp-dot.filled {
+    width: 25px;
+    height: 25px;
+  }
+}
