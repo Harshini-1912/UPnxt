@@ -3,10 +3,12 @@ package com.upnxt.upnxt_backend.jobs.controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import com.upnxt.upnxt_backend.jobs.dto.CreateJobRequest;
 import com.upnxt.upnxt_backend.jobs.entity.Job;
+import com.upnxt.upnxt_backend.jobs.entity.JobType;
 import com.upnxt.upnxt_backend.jobs.service.JobService;
 
 import jakarta.validation.Valid;
@@ -27,10 +29,13 @@ public class JobController {
     // =========================
     @PostMapping
     public ResponseEntity<Job> createJob(
-            @Valid @RequestBody CreateJobRequest request) {
+            @Valid @RequestBody CreateJobRequest request,
+            Authentication authentication) {
+
+        String email = authentication.getName();
 
         return ResponseEntity.ok(
-                jobService.createJob(request)
+                jobService.createJob(request, email)
         );
     }
 
@@ -42,6 +47,42 @@ public class JobController {
 
         return ResponseEntity.ok(
                 jobService.getAllJobs()
+        );
+    }
+
+    // =========================
+    // SEARCH / FILTER JOBS
+    // =========================
+    @GetMapping("/search")
+    public ResponseEntity<List<Job>> searchJobs(
+
+            @RequestParam(required = false)
+            String keyword,
+
+            @RequestParam(required = false)
+            String location,
+
+            @RequestParam(required = false)
+            Double minSalary,
+
+            @RequestParam(required = false)
+            Double maxSalary,
+
+            @RequestParam(required = false)
+            Integer experience,
+
+            @RequestParam(required = false)
+            JobType jobType) {
+
+        return ResponseEntity.ok(
+                jobService.searchJobs(
+                        keyword,
+                        location,
+                        minSalary,
+                        maxSalary,
+                        experience,
+                        jobType
+                )
         );
     }
 

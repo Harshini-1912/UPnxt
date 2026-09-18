@@ -2,12 +2,8 @@ package com.upnxt.upnxt_backend.jobs.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import com.upnxt.upnxt_backend.jobs.entity.JobType;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.upnxt.upnxt_backend.auth.entity.User;
 import com.upnxt.upnxt_backend.auth.repository.UserRepository;
@@ -22,26 +18,33 @@ public class JobService {
     private final JobRepository jobRepository;
     private final UserRepository userRepository;
 
-    public JobService(JobRepository jobRepository,
-                      UserRepository userRepository) {
+    public JobService(
+            JobRepository jobRepository,
+            UserRepository userRepository) {
 
         this.jobRepository = jobRepository;
         this.userRepository = userRepository;
     }
 
-    public Job createJob(CreateJobRequest request, String email) {
+    // =========================
+    // CREATE JOB
+    // =========================
+    public Job createJob(
+            CreateJobRequest request,
+            String email) {
 
         User recruiter = userRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("Recruiter not found"));
+                .orElseThrow(() ->
+                        new RuntimeException("Recruiter not found"));
 
         Job job = Job.builder()
                 .title(request.getTitle())
                 .company(request.getCompany())
                 .location(request.getLocation())
                 .description(request.getDescription())
-                .salary(request.getSalary())
-                .jobType(request.getJobType())
-                .experience(request.getExperience())
+                .salary(parseSalary(request.getSalary()))
+                .jobType(parseJobType(request.getJobType()))
+                .experience(parseExperience(request.getExperience()))
                 .skills(request.getSkills())
                 .postedAt(LocalDateTime.now())
                 .recruiter(recruiter)
@@ -50,17 +53,29 @@ public class JobService {
         return jobRepository.save(job);
     }
 
+    // =========================
+    // GET ALL JOBS
+    // =========================
     public List<Job> getAllJobs() {
         return jobRepository.findAll();
     }
 
+    // =========================
+    // GET JOB BY ID
+    // =========================
     public Job getJobById(Long id) {
 
         return jobRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Job not found"));
+                .orElseThrow(() ->
+                        new RuntimeException("Job not found"));
     }
 
-    public Job updateJob(Long id, CreateJobRequest request) {
+    // =========================
+    // UPDATE JOB
+    // =========================
+    public Job updateJob(
+            Long id,
+            CreateJobRequest request) {
 
         Job job = getJobById(id);
 
@@ -68,131 +83,196 @@ public class JobService {
         job.setCompany(request.getCompany());
         job.setLocation(request.getLocation());
         job.setDescription(request.getDescription());
-        job.setSalary(request.getSalary());
-        job.setJobType(request.getJobType());
-        job.setExperience(request.getExperience());
+        job.setSalary(parseSalary(request.getSalary()));
+        job.setJobType(parseJobType(request.getJobType()));
+        job.setExperience(parseExperience(request.getExperience()));
         job.setSkills(request.getSkills());
 
         return jobRepository.save(job);
     }
 
+    // =========================
+    // DELETE JOB
+    // =========================
     public void deleteJob(Long id) {
 
         Job job = getJobById(id);
 
         jobRepository.delete(job);
     }
+
+    // =========================
+    // SEARCH JOBS
+    // =========================
     public List<Job> searchJobs(
-        String keyword,
-        String location,
-        Double minSalary,
-        Double maxSalary,
-        Integer experience,
-        JobType jobType) {
+            String keyword,
+            String location,
+            Double minSalary,
+            Double maxSalary,
+            Integer experience,
+            JobType jobType) {
 
-    return jobRepository.findAll()
-            .stream()
-            .filter(job ->
-                    keyword == null ||
-                    keyword.isBlank() ||
-                    (job.getTitle() != null &&
-                     job.getTitle()
-                         .toLowerCase()
-                         .contains(keyword.toLowerCase())) ||
-                    (job.getSkills() != null &&
-                     job.getSkills()
-                         .toLowerCase()
-                         .contains(keyword.toLowerCase()))
-            )
-            .filter(job ->
-                    location == null ||
-                    location.isBlank() ||
-                    (job.getLocation() != null &&
-                     job.getLocation()
-                         .toLowerCase()
-                         .contains(location.toLowerCase()))
-            )
-            .filter(job ->
-                    minSalary == null ||
-                    (job.getSalary() != null &&
-                     job.getSalary() >= minSalary)
-            )
-            .filter(job ->
-                    maxSalary == null ||
-                    (job.getSalary() != null &&
-                     job.getSalary() <= maxSalary)
-            )
-            .filter(job ->
-                    experience == null ||
-                    (job.getExperience() != null &&
-                     job.getExperience() <= experience)
-            )
-            .filter(job ->
-                    jobType == null ||
-                    job.getJobType() == jobType
-            )
-            .toList();
-}
-@GetMapping("/search")
-public ResponseEntity<List<Job>> searchJobs(
+        return jobRepository.findAll()
+                .stream()
 
-        @RequestParam(required = false) String keyword,
+                .filter(job ->
+                        keyword == null ||
+                        keyword.isBlank() ||
+                        containsIgnoreCase(
+                                job.getTitle(),
+                                keyword) ||
+                        containsIgnoreCase(
+                                job.getSkills(),
+                                keyword))
 
-        @RequestParam(required = false) String location,
+                .filter(job ->
+                        location == null ||
+                        location.isBlank() ||
+                        containsIgnoreCase(
+                                job.getLocation(),
+                                location))
 
-        @RequestParam(required = false) Double minSalary,
+                .filter(job ->
+                        minSalary == null ||
+                        (job.getSalary() != null &&
+                                job.getSalary() >= minSalary))
 
-        @RequestParam(required = false) Double maxSalary,
+                .filter(job ->
+                        maxSalary == null ||
+                        (job.getSalary() != null &&
+                                job.getSalary() <= maxSalary))
 
-        @RequestParam(required = false) Integer experience,
+                .filter(job ->
+                        experience == null ||
+                        (job.getExperience() != null &&
+                                job.getExperience() <= experience))
 
-        @RequestParam(required = false) JobType jobType) {
+                .filter(job ->
+                        jobType == null ||
+                        job.getJobType() == jobType)
 
-    return ResponseEntity.ok(
-            jobService.searchJobs(
-                    keyword,
-                    location,
-                    minSalary,
-                    maxSalary,
-                    experience,
-                    jobType
-            )
-    );
-}
-public List<Job> searchJobs(String keyword) {
+                .toList();
+    }
 
-    return jobRepository
-            .findByTitleContainingIgnoreCaseOrSkillsContainingIgnoreCase(
-                    keyword,
-                    keyword
-            );
-}
-public List<Job> filterJobs(
-        String location,
-        Double minSalary,
-        Integer maxExperience,
-        JobType jobType) {
+    // =========================
+    // SIMPLE KEYWORD SEARCH
+    // =========================
+    public List<Job> searchJobs(String keyword) {
 
-    List<Job> jobs = jobRepository.findAll();
+        if (keyword == null || keyword.isBlank()) {
+            return jobRepository.findAll();
+        }
 
-    return jobs.stream()
-            .filter(job ->
-                    location == null ||
-                    job.getLocation() != null &&
-                    job.getLocation()
-                        .toLowerCase()
-                        .contains(location.toLowerCase()))
-            .filter(job ->
-                    minSalary == null ||
-                    job.getSalary() != null &&
-                    job.getSalary() >= minSalary)
-            .filter(job ->
-                    maxExperience == null ||
-                    job.getExperience() != null &&
-                    job.getExperience() <= maxExperience)
-            .filter(job ->
-                    jobType == null ||
-                    job.getJobType() == jobType)
-            .toList();
-}
+        return jobRepository
+                .findByTitleContainingIgnoreCaseOrSkillsContainingIgnoreCase(
+                        keyword,
+                        keyword);
+    }
+
+    // =========================
+    // FILTER JOBS
+    // =========================
+    public List<Job> filterJobs(
+            String location,
+            Double minSalary,
+            Integer maxExperience,
+            JobType jobType) {
+
+        return jobRepository.findAll()
+                .stream()
+
+                .filter(job ->
+                        location == null ||
+                        location.isBlank() ||
+                        containsIgnoreCase(
+                                job.getLocation(),
+                                location))
+
+                .filter(job ->
+                        minSalary == null ||
+                        (job.getSalary() != null &&
+                                job.getSalary() >= minSalary))
+
+                .filter(job ->
+                        maxExperience == null ||
+                        (job.getExperience() != null &&
+                                job.getExperience() <= maxExperience))
+
+                .filter(job ->
+                        jobType == null ||
+                        job.getJobType() == jobType)
+
+                .toList();
+    }
+
+    // =========================
+    // HELPERS
+    // =========================
+    private boolean containsIgnoreCase(
+            String value,
+            String search) {
+
+        return value != null &&
+                value.toLowerCase()
+                        .contains(search.toLowerCase());
+    }
+
+    private Double parseSalary(String salary) {
+
+        if (salary == null || salary.isBlank()) {
+            return null;
+        }
+
+        try {
+            String cleaned = salary
+                    .replace("₹", "")
+                    .replace(",", "")
+                    .trim();
+
+            return Double.parseDouble(cleaned);
+
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException(
+                    "Salary must be a valid number");
+        }
+    }
+
+    private Integer parseExperience(String experience) {
+
+        if (experience == null || experience.isBlank()) {
+            return null;
+        }
+
+        try {
+            String cleaned = experience
+                    .replaceAll("[^0-9]", "")
+                    .trim();
+
+            if (cleaned.isEmpty()) {
+                throw new NumberFormatException();
+            }
+
+            return Integer.parseInt(cleaned);
+
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException(
+                    "Experience must contain a valid number");
+        }
+    }
+
+    private JobType parseJobType(String jobType) {
+
+        if (jobType == null || jobType.isBlank()) {
+            return null;
+        }
+
+        try {
+            return JobType.valueOf(
+                    jobType.trim().toUpperCase());
+
+        } catch (IllegalArgumentException exception) {
+            throw new IllegalArgumentException(
+                    "Invalid job type: " + jobType);
+        }
+    }
 }
